@@ -1,0 +1,31 @@
+{
+  "name": "Peepoo Tracker",
+  "short_name": "Peepoo Tracker",
+  "lang": "fi",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#faf9ff",
+  "theme_color": "#8166d8",
+  "description": "Vauvan syöttöjen, imetysten, pumppausten ja kasvumittojen seuranta.",
+  "icons": [
+    {
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icons/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

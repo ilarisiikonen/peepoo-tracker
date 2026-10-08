@@ -1,0 +1,10 @@
+# Firebase Hosting deployment metadata
+.firebase/
+
+# Local Firebase emulators and logs
+firebase-debug.log
+firestore-debug.log
+ui-debug.log
+
+# Node.js tooling
+node_modules/

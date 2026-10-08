@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="fi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#8166d8">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#211a35">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <title>Peepoo Tracker</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <script src="theme.js?v=1"></script>
+  <link rel="stylesheet" href="styles.css?v=10">
+</head>
+<body data-page="home">
+  <main class="app protected-content" hidden>
+    <header class="page-header">
+      <p class="eyebrow">Oltsun arki</p>
+      <h1>Kirjaa syöttö</h1>
+      <p class="intro">Kirjaa päivän syötöt helposti.</p>
+    </header>
+
+    <section class="daily-total" aria-labelledby="daily-total-heading">
+      <span id="daily-total-heading">Tänään yhteensä</span>
+      <strong id="todayTotal">0 ml</strong>
+      <small id="todayBreakdown">Ei kirjauksia vielä</small>
+    </section>
+
+    <section class="card entry-card" aria-labelledby="feed-heading">
+      <h2 id="feed-heading">Uusi merkintä</h2>
+      <p class="last-feed-time" id="lastFeedTime" aria-live="polite">Edellisestä syötöstä: —</p>
+      <div class="entry-switcher" role="tablist" aria-label="Merkinnän tyyppi">
+        <button class="active" type="button" role="tab" aria-selected="true" data-entry-mode="feed">Pullo</button>
+        <button type="button" role="tab" aria-selected="false" data-entry-mode="breastfeed">Imetys</button>
+        <button type="button" role="tab" aria-selected="false" data-entry-mode="pump">Pumppaus</button>
+      </div>
+
+      <form id="feedForm" data-entry-panel="feed">
+        <label>Määrä (ml)
+          <input id="amount" name="amount" type="number" inputmode="numeric" min="1" max="2000" placeholder="esim. 120" required autofocus>
+        </label>
+        <div class="quick-amounts" id="quickAmounts" aria-label="Usein käytetyt määrät"></div>
+        <div class="two-columns">
+          <div class="milk-choice">
+            <span>Maito</span>
+            <div class="milk-switch" id="milkTypeSwitch" role="group" aria-label="Maito">
+              <input id="milkType" name="milkType" type="hidden" value="breast">
+              <button class="active" type="button" data-milk-type="breast" aria-pressed="true">Äidinmaito</button>
+              <button type="button" data-milk-type="formula" aria-pressed="false">Korvike</button>
+            </div>
+          </div>
+          <label>Aika (15 min)
+            <input id="feedTime" name="feedTime" type="datetime-local" step="900" required>
+          </label>
+        </div>
+        <button class="primary" type="submit">Tallenna syöttö</button>
+      </form>
+
+      <form id="breastfeedForm" data-entry-panel="breastfeed" hidden>
+        <p class="form-intro">Kirjaa imetyksen aloitusaika.</p>
+        <label>Aloitusaika (15 min)
+          <input id="breastfeedTime" name="breastfeedTime" type="datetime-local" step="900" required>
+        </label>
+        <button class="primary" type="submit">Kirjaa imetys</button>
+      </form>
+
+      <form id="pumpForm" data-entry-panel="pump" hidden>
+        <p class="form-intro">Pumpattu maito ei sisälly juotuun määrään.</p>
+        <div class="two-columns">
+          <label>Määrä (ml)
+            <input id="pumpAmount" name="pumpAmount" type="number" inputmode="numeric" min="1" max="2000" placeholder="esim. 90" required>
+          </label>
+          <label>Aika (15 min)
+            <input id="pumpTime" name="pumpTime" type="datetime-local" step="900" required>
+          </label>
+        </div>
+        <button class="primary" type="submit">Kirjaa pumppaus</button>
+      </form>
+    </section>
+
+    <section class="recent-section" aria-labelledby="recent-heading">
+      <div class="section-heading">
+        <div>
+          <h2 id="recent-heading">Viimeiset 8 tuntia</h2>
+          <p>Napauta merkintää muokataksesi sitä</p>
+        </div>
+      </div>
+      <ol class="feed-list" id="recentFeeds"></ol>
+    </section>
+  </main>
+
+  <dialog class="edit-dialog" id="editDialog" aria-labelledby="editHeading">
+    <form id="editForm">
+      <div class="dialog-header">
+        <h2 id="editHeading">Muokkaa merkintää</h2>
+        <button class="icon-button" id="closeEdit" type="button" aria-label="Sulje">×</button>
+      </div>
+      <div id="editTypeField" hidden>
+        <div class="milk-choice">
+          <span>Maito</span>
+          <div class="milk-switch" id="editMilkTypeSwitch" role="group" aria-label="Maito">
+            <input id="editMilkType" type="hidden" value="breast">
+            <button type="button" data-milk-type="breast" aria-pressed="false">Äidinmaito</button>
+            <button type="button" data-milk-type="formula" aria-pressed="false">Korvike</button>
+          </div>
+        </div>
+      </div>
+      <div id="editAmountField" hidden>
+        <label>Määrä (ml)
+          <input id="editAmount" type="number" inputmode="numeric" min="1" max="2000">
+        </label>
+      </div>
+      <label>Aika (15 min)
+        <input id="editTime" type="datetime-local" step="900" required>
+      </label>
+      <button class="primary" type="submit">Tallenna muutokset</button>
+      <button class="danger-button" id="deleteLogEntry" type="button">Poista merkintä</button>
+    </form>
+  </dialog>
+
+  <nav class="bottom-nav" aria-label="Päävalikko">
+    <a class="active" href="index.html" aria-current="page"><span aria-hidden="true">＋</span>Kirjaa</a>
+    <a href="loki.html"><span aria-hidden="true">☷</span>Lokit</a>
+    <a href="tilastot.html"><span aria-hidden="true">▥</span>Tilastot</a>
+    <a href="kasvu.html"><span aria-hidden="true">♡</span>Kasvu</a>
+    <a href="asetukset.html"><span aria-hidden="true">⚙</span>Asetukset</a>
+  </nav>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script type="module" src="app.js?v=7"></script>
+</body>
+</html>

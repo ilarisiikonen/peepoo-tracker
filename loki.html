@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="fi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#8166d8">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#211a35">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <title>Lokit | Peepoo Tracker</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <script src="theme.js?v=1"></script>
+  <link rel="stylesheet" href="styles.css?v=10">
+</head>
+<body data-page="log">
+  <main class="app protected-content" hidden>
+    <header class="page-header">
+      <p class="eyebrow">Oltsun arki</p>
+      <h1>Kaikki merkinnät</h1>
+      <p class="intro">Napauta merkintää muokataksesi sitä.</p>
+    </header>
+
+    <section class="log-filter" aria-label="Lokisuodatin">
+      <label>Näytä päivä
+        <input id="logDate" type="date">
+      </label>
+      <button class="secondary" id="clearLogDate" type="button">Kaikki</button>
+    </section>
+
+    <ol class="feed-list full-log" id="logEntries"></ol>
+  </main>
+
+  <dialog class="edit-dialog" id="editDialog" aria-labelledby="editHeading">
+    <form id="editForm">
+      <div class="dialog-header">
+        <h2 id="editHeading">Muokkaa merkintää</h2>
+        <button class="icon-button" id="closeEdit" type="button" aria-label="Sulje">×</button>
+      </div>
+      <div id="editTypeField" hidden>
+        <div class="milk-choice">
+          <span>Maito</span>
+          <div class="milk-switch" id="editMilkTypeSwitch" role="group" aria-label="Maito">
+            <input id="editMilkType" type="hidden" value="breast">
+            <button type="button" data-milk-type="breast" aria-pressed="false">Äidinmaito</button>
+            <button type="button" data-milk-type="formula" aria-pressed="false">Korvike</button>
+          </div>
+        </div>
+      </div>
+      <div id="editAmountField" hidden>
+        <label>Määrä (ml)
+          <input id="editAmount" type="number" inputmode="numeric" min="1" max="2000">
+        </label>
+      </div>
+      <label>Aika (15 min)
+        <input id="editTime" type="datetime-local" step="900" required>
+      </label>
+      <button class="primary" type="submit">Tallenna muutokset</button>
+      <button class="danger-button" id="deleteLogEntry" type="button">Poista merkintä</button>
+    </form>
+  </dialog>
+
+  <nav class="bottom-nav" aria-label="Päävalikko">
+    <a href="index.html"><span aria-hidden="true">＋</span>Kirjaa</a>
+    <a class="active" href="loki.html" aria-current="page"><span aria-hidden="true">☷</span>Lokit</a>
+    <a href="tilastot.html"><span aria-hidden="true">▥</span>Tilastot</a>
+    <a href="kasvu.html"><span aria-hidden="true">♡</span>Kasvu</a>
+    <a href="asetukset.html"><span aria-hidden="true">⚙</span>Asetukset</a>
+  </nav>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script type="module" src="app.js?v=7"></script>
+</body>
+</html>

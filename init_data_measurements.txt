@@ -1,0 +1,6 @@
+date; weight; height; head_circumference;
+1-9-2026; 3175; 51; 34;
+2-9-2026; 2985; null; null;
+10-9-2026; 3240; null; 35;
+23-9-2026; 3780; 54.4; 36.4;
+2-10-2026; 4070; null; null;

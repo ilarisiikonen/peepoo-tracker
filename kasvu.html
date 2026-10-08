@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="fi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#8166d8">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#211a35">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <title>Kasvu | Peepoo Tracker</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <script src="theme.js?v=1"></script>
+  <link rel="stylesheet" href="styles.css?v=10">
+</head>
+<body data-page="growth">
+  <main class="app protected-content" hidden>
+    <header class="page-header">
+      <p class="eyebrow">Vauvan arki</p>
+      <h1>Kasvumitat</h1>
+      <p class="intro">Tallenna paino ja pituus mittauspäivänä.</p>
+    </header>
+
+    <section class="stats-grid" aria-label="Viimeisimmät kasvumitat">
+      <article class="stat">
+        <span>Viimeisin paino</span>
+        <strong id="latestWeight">—</strong>
+        <small id="weightDate">Ei mittauksia</small>
+      </article>
+      <article class="stat">
+        <span>Viimeisin pituus</span>
+        <strong id="latestHeight">—</strong>
+        <small id="heightDate">Ei mittauksia</small>
+      </article>
+    </section>
+
+    <section class="card entry-card" aria-labelledby="measurement-heading">
+      <h2 id="measurement-heading">Uusi mittaus</h2>
+      <form id="measurementForm">
+        <div class="two-columns">
+          <label>Paino (kg)
+            <input id="weight" name="weight" type="number" inputmode="decimal" min="0.1" max="30" step="0.01" placeholder="esim. 5,25">
+          </label>
+          <label>Pituus (cm)
+            <input id="height" name="height" type="number" inputmode="decimal" min="1" max="150" step="0.1" placeholder="esim. 58">
+          </label>
+        </div>
+        <button class="primary" type="submit">Tallenna mitat</button>
+      </form>
+    </section>
+
+    <section class="card growth-chart-card" aria-labelledby="growth-chart-heading">
+      <h2 id="growth-chart-heading">Kehityskäyrä</h2>
+      <div class="growth-charts">
+        <figure class="growth-chart">
+          <figcaption>Paino (kg)</figcaption>
+          <svg id="weightChart" viewBox="0 0 320 150" role="img" aria-label="Painon kehityskäyrä"></svg>
+        </figure>
+        <figure class="growth-chart">
+          <figcaption>Pituus (cm)</figcaption>
+          <svg id="heightChart" viewBox="0 0 320 150" role="img" aria-label="Pituuden kehityskäyrä"></svg>
+        </figure>
+      </div>
+    </section>
+
+    <section class="card measurement-history" aria-labelledby="history-heading">
+      <h2 id="history-heading">Mittaushistoria</h2>
+      <p class="section-intro">Napauta riviä muokataksesi mittausta.</p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th scope="col">Päivä</th>
+              <th scope="col">Paino</th>
+              <th scope="col">Pituus</th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody id="measurementsTable"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <dialog class="edit-dialog" id="measurementDialog" aria-labelledby="measurementDialogHeading">
+    <form id="editMeasurementForm">
+      <div class="dialog-header">
+        <h2 id="measurementDialogHeading">Muokkaa mittausta</h2>
+        <button class="icon-button" id="closeMeasurementEdit" type="button" aria-label="Sulje">×</button>
+      </div>
+      <div class="two-columns">
+        <label>Paino (kg)
+          <input id="editWeight" type="number" inputmode="decimal" min="0.1" max="30" step="0.01">
+        </label>
+        <label>Pituus (cm)
+          <input id="editHeight" type="number" inputmode="decimal" min="1" max="150" step="0.1">
+        </label>
+      </div>
+      <label>Mittauspäivä
+        <input id="editMeasurementTime" type="datetime-local" step="900" required>
+      </label>
+      <button class="primary" type="submit">Tallenna muutokset</button>
+    </form>
+  </dialog>
+
+  <nav class="bottom-nav" aria-label="Päävalikko">
+    <a href="index.html"><span aria-hidden="true">＋</span>Kirjaa</a>
+    <a href="loki.html"><span aria-hidden="true">☷</span>Lokit</a>
+    <a href="tilastot.html"><span aria-hidden="true">▥</span>Tilastot</a>
+    <a class="active" href="kasvu.html" aria-current="page"><span aria-hidden="true">♡</span>Kasvu</a>
+    <a href="asetukset.html"><span aria-hidden="true">⚙</span>Asetukset</a>
+  </nav>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="initial-data.js"></script>
+  <script type="module" src="app.js?v=7"></script>
+</body>
+</html>

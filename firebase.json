@@ -1,0 +1,21 @@
+{
+  "hosting": {
+    "public": ".",
+    "cleanUrls": true,
+    "ignore": [
+      "firebase.json",
+      ".firebaserc",
+      ".git/**",
+      "**/node_modules/**",
+      "init_data.txt",
+      "init_data_measurements.txt",
+      "initial-data.js",
+      "initial-measurements.js",
+      "initial-activities.js",
+      "firebase_config"
+    ]
+  },
+  "firestore": {
+    "rules": "firestore.rules"
+  }
+}

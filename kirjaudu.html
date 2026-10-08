@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="fi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#8166d8">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#211a35">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <title>Kirjaudu | Peepoo Tracker</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <script src="theme.js?v=1"></script>
+  <link rel="stylesheet" href="styles.css?v=10">
+</head>
+<body data-page="login" class="auth-page">
+  <main class="auth-card">
+    <p class="eyebrow">Vauvan arki</p>
+    <h1>Syöttöseuranta</h1>
+    <p class="intro">Kirjaudu Google-tilillä nähdäksesi perheenne yhteiset merkinnät.</p>
+    <button class="primary" id="loginButton" type="button">Jatka Googlella</button>
+    <p class="auth-error" id="loginError" role="alert"></p>
+  </main>
+  <script type="module" src="app.js?v=7"></script>
+</body>
+</html>

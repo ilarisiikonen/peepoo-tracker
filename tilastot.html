@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="fi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#8166d8">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#211a35">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <title>Tilastot | Peepoo Tracker</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <script src="theme.js?v=1"></script>
+  <link rel="stylesheet" href="styles.css?v=10">
+</head>
+<body data-page="stats">
+  <main class="app protected-content" hidden>
+    <header class="page-header compact-header">
+      <p class="eyebrow">Syöttöseuranta</p>
+      <div class="title-row">
+        <h1>Tilastot</h1>
+        <button class="refresh" id="refreshButton" type="button">↻ Päivitä</button>
+      </div>
+    </header>
+
+    <section class="stats-grid" aria-label="Syöttötilastot">
+      <article class="stat highlight">
+        <span>Tänään yhteensä</span>
+        <strong id="todayTotal">0 ml</strong>
+        <small id="todayBreakdown">Ei kirjauksia vielä</small>
+      </article>
+      <article class="stat">
+        <span>Viikon päivittäinen keskiarvo</span>
+        <strong id="weekAverage">0 ml</strong>
+        <small>Viimeiset 7 päivää</small>
+      </article>
+    </section>
+
+    <section class="card milk-mix-card" aria-labelledby="mix-heading">
+      <div class="card-heading-row">
+        <h2 id="mix-heading">Maidon jakautuminen</h2>
+        <span>Viimeiset 7 päivää</span>
+      </div>
+      <div class="milk-mix-bar" aria-label="Äidinmaidon ja korvikkeen osuudet">
+        <div class="milk-mix-segment breast" id="breastSegment"></div>
+        <div class="milk-mix-segment formula" id="formulaSegment"></div>
+      </div>
+      <div class="milk-mix-values">
+        <div><span><i class="swatch breast"></i>Äidinmaito</span><strong id="breastPercent">0 %</strong></div>
+        <div><span><i class="swatch formula"></i>Korvike</span><strong id="formulaPercent">0 %</strong></div>
+      </div>
+    </section>
+
+    <section class="card chart-card" aria-labelledby="chart-heading">
+      <h2 id="chart-heading">Syötöt viimeisen 7 päivän aikana</h2>
+      <div class="legend" aria-label="Kaavion selite">
+        <span><i class="swatch breast"></i>Äidinmaito</span>
+        <span><i class="swatch formula"></i>Korvike</span>
+      </div>
+      <div class="chart" id="chart" aria-label="Päivittäiset syöttömäärät pylväskaaviona"></div>
+      <p class="comparison" id="comparison"></p>
+    </section>
+
+    <section class="card activity-card" aria-labelledby="activity-heading">
+      <div class="card-heading-row">
+        <h2 id="activity-heading">Imetys ja pumppaus</h2>
+        <span>Edelliset 7 päivää</span>
+      </div>
+      <div class="activity-grid">
+        <div>
+          <span>Imetyskerrat / päivä</span>
+          <strong id="breastfeedCount">0,0 krt</strong>
+        </div>
+        <div>
+          <span>Pumpattu maito / päivä</span>
+          <strong id="pumpTotal">0 ml</strong>
+        </div>
+      </div>
+      <p class="section-intro">Nämä eivät sisälly vauvan juomaan kokonaismäärään.</p>
+      <div class="activity-chart-grid">
+        <figure class="activity-chart-figure">
+          <figcaption>Imetyskerrat päivittäin</figcaption>
+          <div class="activity-chart" id="breastfeedChart" aria-label="Päivittäiset imetyskerrat edellisten 7 päivän ajalta"></div>
+        </figure>
+        <figure class="activity-chart-figure">
+          <figcaption>Pumpattu maito päivittäin</figcaption>
+          <div class="activity-chart" id="pumpChart" aria-label="Päivittäin pumpattu maito edellisten 7 päivän ajalta"></div>
+        </figure>
+      </div>
+    </section>
+    <p class="refresh-time" id="refreshTime">Viimeksi päivitetty: —</p>
+  </main>
+
+  <nav class="bottom-nav" aria-label="Päävalikko">
+    <a href="index.html"><span aria-hidden="true">＋</span>Kirjaa</a>
+    <a href="loki.html"><span aria-hidden="true">☷</span>Lokit</a>
+    <a class="active" href="tilastot.html" aria-current="page"><span aria-hidden="true">▥</span>Tilastot</a>
+    <a href="kasvu.html"><span aria-hidden="true">♡</span>Kasvu</a>
+    <a href="asetukset.html"><span aria-hidden="true">⚙</span>Asetukset</a>
+  </nav>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="initial-data.js"></script>
+  <script type="module" src="app.js?v=7"></script>
+</body>
+</html>

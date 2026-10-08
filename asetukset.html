@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="fi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#8166d8">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#211a35">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <title>Asetukset | Peepoo Tracker</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <script src="theme.js?v=1"></script>
+  <link rel="stylesheet" href="styles.css?v=10">
+</head>
+<body data-page="settings">
+  <main class="app protected-content" hidden>
+    <header class="page-header">
+      <p class="eyebrow">Oltsun arki</p>
+      <h1>Asetukset</h1>
+      <p class="intro">Valitse sovelluksen ulkoasu.</p>
+    </header>
+
+    <section class="card settings-card" aria-labelledby="theme-heading">
+      <h2 id="theme-heading">Väriteema</h2>
+      <fieldset class="theme-options">
+        <legend>Valitse teema</legend>
+        <label>
+          <input name="themePreference" type="radio" value="auto">
+          <span>Automaattinen</span>
+          <small>Käytä laitteen asetusta</small>
+        </label>
+        <label>
+          <input name="themePreference" type="radio" value="light">
+          <span>Vaalea</span>
+          <small>Vaalea ulkoasu aina</small>
+        </label>
+        <label>
+          <input name="themePreference" type="radio" value="dark">
+          <span>Tumma</span>
+          <small>Tumma ulkoasu aina</small>
+        </label>
+      </fieldset>
+    </section>
+
+    <section class="card settings-card" aria-labelledby="account-heading">
+      <h2 id="account-heading">Tili</h2>
+      <button class="danger-button" id="signOutButton" type="button">Kirjaudu ulos</button>
+    </section>
+  </main>
+
+  <nav class="bottom-nav" aria-label="Päävalikko">
+    <a href="index.html"><span aria-hidden="true">＋</span>Kirjaa</a>
+    <a href="loki.html"><span aria-hidden="true">☷</span>Lokit</a>
+    <a href="tilastot.html"><span aria-hidden="true">▥</span>Tilastot</a>
+    <a href="kasvu.html"><span aria-hidden="true">♡</span>Kasvu</a>
+    <a class="active" href="asetukset.html" aria-current="page"><span aria-hidden="true">⚙</span>Asetukset</a>
+  </nav>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script type="module" src="app.js?v=7"></script>
+</body>
+</html>
